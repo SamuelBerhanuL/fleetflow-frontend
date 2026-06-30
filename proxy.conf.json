@@ -1,0 +1,8 @@
+{
+  "/api": {
+    "target": "https://se4801-group-fleetflow-production.up.railway.app",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

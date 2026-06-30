@@ -1,0 +1,200 @@
+<div class="min-h-screen bg-navy-950 cyber-grid pb-12">
+
+  <!-- Navbar -->
+  <nav class="glass-panel text-white sticky top-0 z-50 px-8 py-4 flex justify-between items-center border-b border-white/5 shadow-xl">
+    <div class="flex items-center gap-3">
+      <div class="p-2 bg-cyber-blue/15 rounded-xl border border-cyber-blue/30">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-cyber-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+      </div>
+      <div>
+        <h1 class="text-xl font-extrabold tracking-tight gradient-text">FleetFlow</h1>
+        <p class="text-[10px] text-gray-400 uppercase tracking-widest font-semibold font-display">Logistics Control</p>
+      </div>
+    </div>
+    
+    <div class="flex items-center gap-6">
+      <div class="flex items-center gap-1">
+        <a routerLink="/dashboard" class="px-4 py-2 text-sm font-semibold rounded-xl text-cyber-blue bg-white/5 border border-cyber-blue/20 transition-all duration-300">Dashboard</a>
+        <a routerLink="/shipments" class="px-4 py-2 text-sm font-medium rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition-all duration-300">Shipments</a>
+        <a routerLink="/drivers" class="px-4 py-2 text-sm font-medium rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition-all duration-300">Drivers</a>
+        <a routerLink="/warehouses" class="px-4 py-2 text-sm font-medium rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition-all duration-300">Warehouses</a>
+      </div>
+      
+      <div class="flex items-center gap-3 ml-4 border-l border-white/10 pl-6">
+        <span class="text-xs text-gray-400 font-mono hidden md:inline">{{ email }}</span>
+        <button (click)="logout()" class="bg-red-950/40 hover:bg-red-900/60 border border-red-500/40 text-red-200 text-xs px-4 py-2 rounded-xl transition-all duration-300 uppercase tracking-wider font-semibold font-display">
+          Disconnect
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="max-w-7xl mx-auto p-8 relative z-10">
+
+    <!-- Page Title -->
+    <div class="mb-8 flex justify-between items-center">
+      <div>
+        <h2 class="text-3xl font-extrabold text-white tracking-tight">Dashboard Overview</h2>
+        <p class="text-gray-400 mt-1">Terminal connection active. Welcome back, <span class="text-cyber-blue font-mono font-semibold">{{ email }}</span></p>
+      </div>
+      <div class="text-xs text-gray-400 font-mono bg-white/5 border border-white/5 px-4 py-2 rounded-xl">
+        SYSTEM STATUS: <span class="text-cyber-green font-bold animate-pulse">ONLINE</span>
+      </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+
+      <!-- Total Shipments -->
+      <div class="glass-card rounded-2xl p-6 relative overflow-hidden group">
+        <div class="absolute -right-4 -bottom-4 opacity-10 group-hover:opacity-20 transition-opacity duration-300 text-cyber-blue">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-24 h-24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+          </svg>
+        </div>
+        <div class="flex justify-between items-center mb-4">
+          <p class="text-xs font-bold text-gray-400 uppercase tracking-wider font-display">Total Shipments</p>
+          <span class="p-2 bg-cyber-blue/10 border border-cyber-blue/20 rounded-lg text-cyber-blue">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+            </svg>
+          </span>
+        </div>
+        <p class="text-4xl font-extrabold text-white tracking-tight">{{ stats.shipments }}</p>
+        <a routerLink="/shipments" class="text-cyber-blue text-xs font-semibold mt-4 inline-flex items-center gap-1 hover:underline">
+          Access Console <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
+        </a>
+      </div>
+
+      <!-- Active Drivers -->
+      <div class="glass-card rounded-2xl p-6 relative overflow-hidden group">
+        <div class="absolute -right-4 -bottom-4 opacity-10 group-hover:opacity-20 transition-opacity duration-300 text-cyber-green">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-24 h-24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+        </div>
+        <div class="flex justify-between items-center mb-4">
+          <p class="text-xs font-bold text-gray-400 uppercase tracking-wider font-display">Active Drivers</p>
+          <span class="p-2 bg-cyber-green/10 border border-cyber-green/20 rounded-lg text-cyber-green">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+          </span>
+        </div>
+        <p class="text-4xl font-extrabold text-white tracking-tight">{{ stats.drivers }}</p>
+        <a routerLink="/drivers" class="text-cyber-green text-xs font-semibold mt-4 inline-flex items-center gap-1 hover:underline">
+          Access Console <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
+        </a>
+      </div>
+
+      <!-- Vehicles -->
+      <div class="glass-card rounded-2xl p-6 relative overflow-hidden group">
+        <div class="absolute -right-4 -bottom-4 opacity-10 group-hover:opacity-20 transition-opacity duration-300 text-cyber-purple">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-24 h-24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
+          </svg>
+        </div>
+        <div class="flex justify-between items-center mb-4">
+          <p class="text-xs font-bold text-gray-400 uppercase tracking-wider font-display">Vehicles</p>
+          <span class="p-2 bg-cyber-purple/10 border border-cyber-purple/20 rounded-lg text-cyber-purple">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+            </svg>
+          </span>
+        </div>
+        <p class="text-4xl font-extrabold text-white tracking-tight">{{ stats.vehicles }}</p>
+        <span class="text-gray-500 text-xs font-semibold mt-4 inline-block">Active Fleet Devices</span>
+      </div>
+
+      <!-- Warehouses -->
+      <div class="glass-card rounded-2xl p-6 relative overflow-hidden group">
+        <div class="absolute -right-4 -bottom-4 opacity-10 group-hover:opacity-20 transition-opacity duration-300 text-orange-400">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-24 h-24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+          </svg>
+        </div>
+        <div class="flex justify-between items-center mb-4">
+          <p class="text-xs font-bold text-gray-400 uppercase tracking-wider font-display">Warehouses</p>
+          <span class="p-2 bg-orange-500/10 border border-orange-500/20 rounded-lg text-orange-400">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+          </span>
+        </div>
+        <p class="text-4xl font-extrabold text-white tracking-tight">{{ stats.warehouses }}</p>
+        <a routerLink="/warehouses" class="text-orange-400 text-xs font-semibold mt-4 inline-flex items-center gap-1 hover:underline">
+          Access Console <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Recent Shipments -->
+    <div class="glass-panel rounded-2xl p-6 border border-white/5 shadow-2xl">
+      <div class="flex justify-between items-center mb-6">
+        <div>
+          <h3 class="text-lg font-bold text-white font-display">Live Tracking Registry</h3>
+          <p class="text-xs text-gray-400 mt-0.5">Showing last 5 active shipments</p>
+        </div>
+        <a routerLink="/shipments" class="px-5 py-2.5 bg-cyber-blue/15 hover:bg-cyber-blue/25 border border-cyber-blue/30 text-cyber-blue text-xs font-bold rounded-xl transition duration-300 uppercase tracking-wider">
+          + New Shipment Registry
+        </a>
+      </div>
+
+      <div *ngIf="loading" class="text-center py-12 text-gray-500 flex flex-col items-center gap-3">
+        <span class="w-8 h-8 border-2 border-cyber-blue border-t-transparent rounded-full animate-spin"></span>
+        <span class="text-xs font-mono tracking-widest uppercase">Initializing Stream...</span>
+      </div>
+
+      <div *ngIf="!loading && recentShipments.length === 0" class="text-center py-12 text-gray-500">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-gray-700 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+        </svg>
+        <span class="text-sm font-medium">No shipment telemetry found. Create your first record!</span>
+      </div>
+
+      <!-- Modernised List/Table representation -->
+      <div *ngIf="!loading && recentShipments.length > 0" class="overflow-x-auto">
+        <table class="w-full border-collapse">
+          <thead>
+            <tr class="border-b border-white/5 text-gray-400">
+              <th class="text-left py-3.5 px-4 text-xs font-bold uppercase tracking-wider font-display">Tracking Code</th>
+              <th class="text-left py-3.5 px-4 text-xs font-bold uppercase tracking-wider font-display">Customer</th>
+              <th class="text-left py-3.5 px-4 text-xs font-bold uppercase tracking-wider font-display">Route</th>
+              <th class="text-left py-3.5 px-4 text-xs font-bold uppercase tracking-wider font-display">Telemetry Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let s of recentShipments" class="border-b border-white/5 hover:bg-white/[0.02] transition-colors duration-200">
+              <td class="py-4 px-4">
+                <span class="font-mono text-sm font-bold text-cyber-blue bg-cyber-blue/10 border border-cyber-blue/20 px-3 py-1 rounded-lg">
+                  {{ s.trackingCode }}
+                </span>
+              </td>
+              <td class="py-4 px-4 text-sm text-gray-200 font-semibold">{{ s.customerName }}</td>
+              <td class="py-4 px-4 text-sm text-gray-400">{{ s.routeName }}</td>
+              <td class="py-4 px-4">
+                <span class="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/10 w-fit">
+                  <span class="status-dot" [ngClass]="{
+                    'green': s.status === 'DELIVERED',
+                    'yellow': s.status === 'PENDING',
+                    'blue': s.status === 'PICKED_UP',
+                    'purple': s.status === 'IN_TRANSIT',
+                    'red': s.status === 'CANCELLED'
+                  }"></span>
+                  <span class="text-gray-300 text-[11px] font-mono">{{ s.status }}</span>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
